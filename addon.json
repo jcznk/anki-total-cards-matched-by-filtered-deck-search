@@ -1,0 +1,6 @@
+{
+    "homepage": "https://github.com/abdnh/anki-addon-template",
+    "min_point_version": 45,
+    "name": "total_cards_matched_by_filtered_deck_search",
+    "package": "Show total cards matched by filtered deck search"
+}
