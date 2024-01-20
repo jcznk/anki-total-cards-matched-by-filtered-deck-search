@@ -31,7 +31,7 @@ def on_overview_will_render_content(
         ),
     )
     search = mw.col.build_search_string(
-        node, SearchNode(negated=mw.col.group_searches(*excluded_nodes))
+        node, SearchNode(negated=mw.col.group_searches(*excluded_nodes, joiner="OR"))
     )
     cids = mw.col.find_cards(search)
     soup = BeautifulSoup(content.table, "html.parser")
