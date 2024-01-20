@@ -1,13 +1,17 @@
+import json
 import os
 import sys
+from typing import Any
 
 from anki.collection import SearchNode
-from aqt import gui_hooks, mw
+from aqt import dialogs, gui_hooks, mw
 from aqt.overview import Overview, OverviewContent
 from aqt.qt import *
 from bs4 import BeautifulSoup
 
 sys.path.append(os.path.join(os.path.dirname(__file__), "vendor"))
+
+from .consts import consts
 
 
 def on_overview_will_render_content(
@@ -36,13 +40,31 @@ def on_overview_will_render_content(
     td1.append("Total matched:")
     tr.append(td1)
     td2 = soup.new_tag("td")
+    a = soup.new_tag("a")
+    a[
+        "href"
+    ] = f'javascript:void(pycmd("{consts.module}:browse:" + {json.dumps(search)}))'
+    a.append(str(len(cids)))
     b = soup.new_tag("b")
-    b.append(str(len(cids)))
-    td2.append(b)
+    b.append(a)
+    td2.append(a)
     tr.append(td2)
     table = soup.select_one("table table")
     table.append(tr)
     content.table = table.decode()
 
 
+def on_webview_did_receive_js_message(
+    handled: tuple[bool, Any], message: str, context: Any
+) -> tuple[bool, Any]:
+    if not message.startswith(f"{consts.module}:"):
+        return handled
+    _, cmd, search = message.split(":", maxsplit=2)
+    if cmd == "browse":
+        dialogs.open("Browser", mw, search=(search,))
+
+    return (True, None)
+
+
 gui_hooks.overview_will_render_content.append(on_overview_will_render_content)
+gui_hooks.webview_did_receive_js_message.append(on_webview_did_receive_js_message)
