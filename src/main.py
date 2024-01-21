@@ -47,11 +47,11 @@ def on_overview_will_render_content(
     a.append(str(len(cids)))
     b = soup.new_tag("b")
     b.append(a)
-    td2.append(a)
+    td2.append(b)
     tr.append(td2)
     table = soup.select_one("table table")
     table.append(tr)
-    content.table = table.decode()
+    content.table = soup.decode()
 
 
 def on_webview_did_receive_js_message(
