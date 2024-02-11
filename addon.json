@@ -2,5 +2,6 @@
     "homepage": "https://github.com/abdnh/anki-total-cards-matched-by-filtered-deck-search",
     "min_point_version": 45,
     "name": "Show total cards matched by filtered deck search",
-    "package": "total_cards_matched_by_filtered_deck_search"
+    "package": "total_cards_matched_by_filtered_deck_search",
+    "ankiweb_id": "918700517"
 }
