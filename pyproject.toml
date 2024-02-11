@@ -3,7 +3,7 @@ requires = ["setuptools", "setuptools-scm"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "Show total cards matched by filtered deck search"
+name = "total_cards_matched_by_filtered_deck_search"
 authors = [{ name = "Abdo", email = "abdo@abdnh.net" }]
 readme = "README.md"
 classifiers = [
@@ -18,9 +18,9 @@ dependencies = { file = ["requirements/bundle.txt"] }
 optional-dependencies.dev = { file = ["requirements/dev.txt"] }
 
 [tool.setuptools]
-package-dir = { "Show total cards matched by filtered deck search" = "src" }
+package-dir = { "total_cards_matched_by_filtered_deck_search" = "src" }
 
 [tool.setuptools_scm]
 
 [project.urls]
-Repository = "https://github.com/abdnh/anki-addon-template"
+Repository = "https://github.com/abdnh/anki-total-cards-matched-by-filtered-deck-search"
