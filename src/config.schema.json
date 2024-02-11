@@ -1,8 +1,4 @@
 {
-    "properties": {
-        "foo": {
-            "type": "string"
-        }
-    },
+    "properties": {},
     "type": "object"
 }
