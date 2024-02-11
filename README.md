@@ -12,7 +12,7 @@ See [CHANGELOG.md](CHANGELOG.md) for a list of changes.
 
 ## Support & feature requests
 
-Please post any questions, bug reports, or feature requests in the [support page](https://forums.ankiweb.net/c/add-ons/11) or the [issue tracker](https://github.com/abdnh/anki-total-cards-matched-by-filtered-deck-search/issues).
+Please post any questions, bug reports, or feature requests in the [support page](https://forums.ankiweb.net/t/show-total-cards-matched-by-filtered-deck-search/40970) or the [issue tracker](https://github.com/abdnh/anki-total-cards-matched-by-filtered-deck-search/issues).
 
 If you want priority support for your feature/help request, I'm available for hire.
 You can get in touch from the aforementioned pages, via [email](mailto:abdo@abdnh.net) or on [Fiverr](https://www.fiverr.com/abd_nh).
