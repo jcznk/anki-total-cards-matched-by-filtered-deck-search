@@ -1,6 +1,10 @@
-# total_cards_matched_by_filtered_deck_search
+# Show total cards matched by filtered deck search
 
-TODO
+This Anki add-on shows the total count of cards matched by a filtered deck's serach query in the overview screen. It basically counts the number of cards that Anki would show if there was no limit.
+
+![screenshot](screenshots/image1.png)
+
+You can click on the number to show the cards in the browser.
 
 ## Changelog
 
