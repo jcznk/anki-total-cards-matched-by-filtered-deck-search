@@ -18,10 +18,14 @@ def on_overview_will_render_content(
     overview: Overview, content: OverviewContent
 ) -> None:
     deck = mw.col.decks.by_name(content.deck)
-    if not deck["dyn"]:
+    # Check if the deck is a filtered deck and if it has valid search terms
+    if not deck["dyn"] or not deck.get("terms") or not any(term[0] for term in deck["terms"]):
         return
+
     terms = [term[0] for term in deck["terms"] if term[0]]
+
     node = mw.col.group_searches(*terms, joiner="OR")
+
     excluded_nodes = (
         SearchNode(card_state=SearchNode.CARD_STATE_SUSPENDED),
         SearchNode(card_state=SearchNode.CARD_STATE_BURIED),
@@ -30,10 +34,13 @@ def on_overview_will_render_content(
             SearchNode(negated=SearchNode(deck=deck["name"])),
         ),
     )
+
     search = mw.col.build_search_string(
         node, SearchNode(negated=mw.col.group_searches(*excluded_nodes, joiner="OR"))
     )
+
     cids = mw.col.find_cards(search)
+
     soup = BeautifulSoup(content.table, "html.parser")
     tr = soup.new_tag("tr")
     td1 = soup.new_tag("td")
@@ -53,7 +60,6 @@ def on_overview_will_render_content(
     table.append(tr)
     content.table = soup.decode()
 
-
 def on_webview_did_receive_js_message(
     handled: tuple[bool, Any], message: str, context: Any
 ) -> tuple[bool, Any]:
@@ -62,9 +68,6 @@ def on_webview_did_receive_js_message(
     _, cmd, search = message.split(":", maxsplit=2)
     if cmd == "browse":
         dialogs.open("Browser", mw, search=(search,))
-
     return (True, None)
-
-
 gui_hooks.overview_will_render_content.append(on_overview_will_render_content)
 gui_hooks.webview_did_receive_js_message.append(on_webview_did_receive_js_message)
